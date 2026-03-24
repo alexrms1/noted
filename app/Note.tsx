@@ -24,7 +24,7 @@ import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Textarea } from '@/components/ui/textarea';
 import { db } from '@/lib/dexie/db';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { LuTrash } from 'react-icons/lu';
 import { toast } from 'sonner';
 
@@ -53,7 +53,7 @@ export default function Note({ note }) {
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTitle className='sr-only'></DialogTitle>
 			<DialogTrigger asChild>
-				<Card className={(open ? 'opacity-0' : 'opacity-100') + " transition-opacity duration-200"} size='sm'>
+				<Card className={(open ? 'opacity-0' : 'opacity-100') + ' transition-opacity duration-200'} size='sm'>
 					<CardHeader>
 						<CardTitle>
 							<h4 className='break-all overflow-auto font-semibold'>{note?.title}</h4>
