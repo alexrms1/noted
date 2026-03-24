@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "title": "Project Setup",
+    "content": "Initialize repository and install dependencies.",
+    "created_at": "2026-03-24T08:00:00Z",
+    "updated_at": "2026-03-24T08:30:00Z"
+  },
+  {
+    "id": 2,
+    "title": "Database Schema",
+    "content": "Design tables for users, tasks, and notes.",
+    "created_at": "2026-03-23T14:15:00Z",
+    "updated_at": "2026-03-23T16:45:00Z"
+  },
+  {
+    "id": 3,
+    "title": "API Endpoints",
+    "content": "Create CRUD routes for notes module.",
+    "created_at": "2026-03-22T10:00:00Z",
+    "updated_at": "2026-03-22T12:20:00Z"
+  },
+  {
+    "id": 4,
+    "title": "UI Improvements",
+    "content": "Refactor layout and improve mobile responsiveness.",
+    "created_at": "2026-03-21T09:30:00Z",
+    "updated_at": "2026-03-21T11:10:00Z"
+  }
+]
