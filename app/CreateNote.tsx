@@ -28,6 +28,8 @@ export default function CreateNote({ onContentChange, onTitleChange }) {
     await promise;
     setTitle("");
     setContent("");
+    onTitleChange("");
+    onContentChange("");
   };
 
   return (

@@ -6,14 +6,25 @@ import { db, NoteType } from "@/lib/dexie/db";
 import { useLiveQuery } from "dexie-react-hooks";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useMemo, useState } from "react";
+import { getSimilarTitle } from "./actions";
 
 export default function Home() {
+  const [similar, setSimilar] = useState<Array<any>>();
+  const [hasTyped, setHasTyped] = useState<boolean>(false);
+
   const notes = useLiveQuery(async () => {
     return db.notes.toArray();
   }, []);
 
-  const handleContentChange = (value) => {};
-  const handleTitleChange = (value) => {};
+  const handleNewSearch = async (title, content) => {
+    setHasTyped(title || content);
+    const similarNotes = await getSimilarTitle({
+      title: title,
+      content: content,
+      documents: notes,
+    });
+    setSimilar(similarNotes);
+  };
 
   const notesColumn = useMemo(() => {
     const colCount = 4;
@@ -21,21 +32,29 @@ export default function Home() {
       { length: colCount },
       () => [],
     );
-    notes?.forEach((item, index) => {
-      colums[index % colCount].push(item);
-    });
+    if (hasTyped) {
+      similar?.forEach((item, index) => {
+        colums[index % colCount].push(item.note);
+      });
+    } else {
+      notes?.forEach((item, index) => {
+        colums[index % colCount].push(item);
+      });
+    }
 
     return colums;
-  }, [notes]);
+  }, [notes, similar]);
 
   return (
     <main className="container p-4 mx-auto space-y-5">
       <section>
         <CreateNote
-          onContentChange={handleContentChange}
-          onTitleChange={handleTitleChange}
+          onContentChange={handleNewSearch}
+          onTitleChange={handleNewSearch}
         />
       </section>
+
+      <section></section>
 
       <section>
         <div className="grid lg:grid-cols-4 2xl:grid-cols-6 gap-2 md:gap-4">
